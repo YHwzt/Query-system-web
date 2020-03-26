@@ -173,8 +173,10 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
     		});
 		}else {
 			tab = layui.bodyTab({
-				openTabNum : "50",  //最大可打开窗口数量
-				url : "json/user1.json" //获取菜单json地址
+				//最大可打开窗口数量
+				openTabNum : "50",  
+				//获取菜单json地址
+				url : "json/user1.json" 
 			});
 		}
 	//通过顶部菜单获取左侧二三级菜单   注：此处只做演示之用，实际开发中通过接口传参的方式获取导航数据
@@ -282,7 +284,8 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
 	//隐藏左侧导航
 	$(".hideMenu").click(function(){
 		if($(".topLevelMenus li.layui-this a").data("url")){
-			layer.msg("此栏目状态下左侧菜单不可展开");  //主要为了避免左侧显示的内容与顶部菜单不匹配
+			//主要为了避免左侧显示的内容与顶部菜单不匹配
+			layer.msg("此栏目状态下左侧菜单不可展开");  
 			return false;
 		}
 		$(".layui-layout-admin").toggleClass("showMenu");
@@ -306,7 +309,8 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
 		//如果不存在子级
 		if($(this).siblings().length == 0){
 			addTab($(this));
-			$('body').removeClass('site-mobile');  //移动端点击菜单关闭菜单层
+			//移动端点击菜单关闭菜单层
+			$('body').removeClass('site-mobile');  
 		}
 		$(this).parent("li").siblings().removeClass("layui-nav-itemed");
 	})
@@ -346,9 +350,11 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
                 })
                 //定位到刷新前的窗口
                 if (curmenu != "undefined") {
-                    if (curmenu == '' || curmenu == "null") {  //定位到后台首页
+                    if (curmenu == '' || curmenu == "null") {  
+			    //定位到后台首页
                         element.tabChange("bodyTab", '');
-                    } else if (JSON.parse(curmenu).title == menu[i].title) {  //定位到刷新前的页面
+                    } else if (JSON.parse(curmenu).title == menu[i].title) {  
+			    //定位到刷新前的页面
                         element.tabChange("bodyTab", menu[i].layId);
                     }
                 } else {
@@ -369,19 +375,6 @@ function addTab(_this){
 	tab.tabAdd(_this);
 }
 
-//捐赠弹窗
-/*function donation(){
-	layer.tab({
-		area : ['260px', '367px'],
-		tab : [{
-			title : "微信",
-			content : "<div style='padding:30px;overflow:hidden;background:#d2d0d0;'><img src='images/wechat.jpg'></div>"
-		},{
-			title : "支付宝",
-			content : "<div style='padding:30px;overflow:hidden;background:#d2d0d0;'><img src='images/alipay.jpg'></div>"
-		}]
-	})
-}*/
 
 //图片管理弹窗
 function showImg(){
