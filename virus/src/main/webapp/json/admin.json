@@ -1,0 +1,44 @@
+{
+	"A": [
+		{
+			"title": "房间列表",
+			"icon": "icon-text",
+			"href": "FindAllRoomServlet?i=0",
+			"spread": false
+		},{
+			"title": "可用房间列表",
+			"icon": "icon-text",
+			"href": "FindAllRoomServlet?i=1",
+			"spread": false
+		},{
+			"title": "被占房间列表",
+			"icon": "icon-text",
+			"href": "FindAllRoomServlet?i=2",
+			"spread": false
+		},
+		{
+			"title": "查询订单列表",
+			"icon": "icon-text",
+			"href": "FindAllOrdersServlet?i=0",
+			"spread": false
+		},
+		{
+			"title": "查询有效订单列表",
+			"icon": "icon-text",
+			"href": "FindAllOrdersServlet?i=1",
+			"spread": false
+		},
+		{
+			"title": "查询过期订单列表",
+			"icon": "icon-text",
+			"href": "FindAllOrdersServlet?i=2",
+			"spread": false
+		},
+		{
+			"title": "刷新房间状态",
+			"icon": "icon-text",
+			"href": "ReflushRoomServlet",
+			"spread": false
+		}
+	]
+}

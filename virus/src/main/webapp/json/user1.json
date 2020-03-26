@@ -1,0 +1,10 @@
+{
+	"A": [
+		{
+			"title": "virus列表",
+			"icon": "icon-text",
+			"href": "virus/findAll",
+			"spread": false
+		}
+	]
+}

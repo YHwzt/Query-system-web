@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.mapper.VirusMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.beans.Virus" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="college" property="college" jdbcType="VARCHAR" />
+    <result column="myclass" property="myclass" jdbcType="VARCHAR" />
+    <result column="startdate" property="startdate" jdbcType="TIMESTAMP" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="BIGINT" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="areas" property="areas" jdbcType="VARCHAR" />
+    <result column="ischinesestudent" property="ischinesestudent" jdbcType="BIT" />
+    <result column="iswuhanstudent" property="iswuhanstudent" jdbcType="BIT" />
+    <result column="ishubeistudent" property="ishubeistudent" jdbcType="BIT" />
+    <result column="is14contact" property="is14contact" jdbcType="BIT" />
+    <result column="isinwuhan" property="isinwuhan" jdbcType="BIT" />
+    <result column="isinhubei" property="isinhubei" jdbcType="BIT" />
+    <result column="istodayformother" property="istodayformother" jdbcType="BIT" />
+    <result column="islikevirus" property="islikevirus" jdbcType="BIT" />
+    <result column="isconfirmvirus" property="isconfirmvirus" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, college, myclass, startdate, username, tel, province, city, areas, ischinesestudent, 
+    iswuhanstudent, ishubeistudent, is14contact, isinwuhan, isinhubei, istodayformother, 
+    islikevirus, isconfirmvirus
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yc.beans.VirusExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from virus
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from virus
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from virus
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yc.beans.VirusExample" >
+    delete from virus
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yc.beans.Virus" >
+    insert into virus (id, college, myclass, 
+      startdate, username, tel, 
+      province, city, areas, 
+      ischinesestudent, iswuhanstudent, ishubeistudent, 
+      is14contact, isinwuhan, isinhubei, 
+      istodayformother, islikevirus, isconfirmvirus
+      )
+    values (#{id,jdbcType=INTEGER}, #{college,jdbcType=VARCHAR}, #{myclass,jdbcType=VARCHAR}, 
+      #{startdate,jdbcType=TIMESTAMP}, #{username,jdbcType=VARCHAR}, #{tel,jdbcType=BIGINT}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{areas,jdbcType=VARCHAR}, 
+      #{ischinesestudent,jdbcType=BIT}, #{iswuhanstudent,jdbcType=BIT}, #{ishubeistudent,jdbcType=BIT}, 
+      #{is14contact,jdbcType=BIT}, #{isinwuhan,jdbcType=BIT}, #{isinhubei,jdbcType=BIT}, 
+      #{istodayformother,jdbcType=BIT}, #{islikevirus,jdbcType=BIT}, #{isconfirmvirus,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.beans.Virus" >
+    insert into virus
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="college != null" >
+        college,
+      </if>
+      <if test="myclass != null" >
+        myclass,
+      </if>
+      <if test="startdate != null" >
+        startdate,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="areas != null" >
+        areas,
+      </if>
+      <if test="ischinesestudent != null" >
+        ischinesestudent,
+      </if>
+      <if test="iswuhanstudent != null" >
+        iswuhanstudent,
+      </if>
+      <if test="ishubeistudent != null" >
+        ishubeistudent,
+      </if>
+      <if test="is14contact != null" >
+        is14contact,
+      </if>
+      <if test="isinwuhan != null" >
+        isinwuhan,
+      </if>
+      <if test="isinhubei != null" >
+        isinhubei,
+      </if>
+      <if test="istodayformother != null" >
+        istodayformother,
+      </if>
+      <if test="islikevirus != null" >
+        islikevirus,
+      </if>
+      <if test="isconfirmvirus != null" >
+        isconfirmvirus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="college != null" >
+        #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="myclass != null" >
+        #{myclass,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=BIGINT},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="areas != null" >
+        #{areas,jdbcType=VARCHAR},
+      </if>
+      <if test="ischinesestudent != null" >
+        #{ischinesestudent,jdbcType=BIT},
+      </if>
+      <if test="iswuhanstudent != null" >
+        #{iswuhanstudent,jdbcType=BIT},
+      </if>
+      <if test="ishubeistudent != null" >
+        #{ishubeistudent,jdbcType=BIT},
+      </if>
+      <if test="is14contact != null" >
+        #{is14contact,jdbcType=BIT},
+      </if>
+      <if test="isinwuhan != null" >
+        #{isinwuhan,jdbcType=BIT},
+      </if>
+      <if test="isinhubei != null" >
+        #{isinhubei,jdbcType=BIT},
+      </if>
+      <if test="istodayformother != null" >
+        #{istodayformother,jdbcType=BIT},
+      </if>
+      <if test="islikevirus != null" >
+        #{islikevirus,jdbcType=BIT},
+      </if>
+      <if test="isconfirmvirus != null" >
+        #{isconfirmvirus,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yc.beans.VirusExample" resultType="java.lang.Integer" >
+    select count(*) from virus
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update virus
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.college != null" >
+        college = #{record.college,jdbcType=VARCHAR},
+      </if>
+      <if test="record.myclass != null" >
+        myclass = #{record.myclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startdate != null" >
+        startdate = #{record.startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null" >
+        tel = #{record.tel,jdbcType=BIGINT},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areas != null" >
+        areas = #{record.areas,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ischinesestudent != null" >
+        ischinesestudent = #{record.ischinesestudent,jdbcType=BIT},
+      </if>
+      <if test="record.iswuhanstudent != null" >
+        iswuhanstudent = #{record.iswuhanstudent,jdbcType=BIT},
+      </if>
+      <if test="record.ishubeistudent != null" >
+        ishubeistudent = #{record.ishubeistudent,jdbcType=BIT},
+      </if>
+      <if test="record.is14contact != null" >
+        is14contact = #{record.is14contact,jdbcType=BIT},
+      </if>
+      <if test="record.isinwuhan != null" >
+        isinwuhan = #{record.isinwuhan,jdbcType=BIT},
+      </if>
+      <if test="record.isinhubei != null" >
+        isinhubei = #{record.isinhubei,jdbcType=BIT},
+      </if>
+      <if test="record.istodayformother != null" >
+        istodayformother = #{record.istodayformother,jdbcType=BIT},
+      </if>
+      <if test="record.islikevirus != null" >
+        islikevirus = #{record.islikevirus,jdbcType=BIT},
+      </if>
+      <if test="record.isconfirmvirus != null" >
+        isconfirmvirus = #{record.isconfirmvirus,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update virus
+    set id = #{record.id,jdbcType=INTEGER},
+      college = #{record.college,jdbcType=VARCHAR},
+      myclass = #{record.myclass,jdbcType=VARCHAR},
+      startdate = #{record.startdate,jdbcType=TIMESTAMP},
+      username = #{record.username,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=BIGINT},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      areas = #{record.areas,jdbcType=VARCHAR},
+      ischinesestudent = #{record.ischinesestudent,jdbcType=BIT},
+      iswuhanstudent = #{record.iswuhanstudent,jdbcType=BIT},
+      ishubeistudent = #{record.ishubeistudent,jdbcType=BIT},
+      is14contact = #{record.is14contact,jdbcType=BIT},
+      isinwuhan = #{record.isinwuhan,jdbcType=BIT},
+      isinhubei = #{record.isinhubei,jdbcType=BIT},
+      istodayformother = #{record.istodayformother,jdbcType=BIT},
+      islikevirus = #{record.islikevirus,jdbcType=BIT},
+      isconfirmvirus = #{record.isconfirmvirus,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.beans.Virus" >
+    update virus
+    <set >
+      <if test="college != null" >
+        college = #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="myclass != null" >
+        myclass = #{myclass,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        startdate = #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=BIGINT},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="areas != null" >
+        areas = #{areas,jdbcType=VARCHAR},
+      </if>
+      <if test="ischinesestudent != null" >
+        ischinesestudent = #{ischinesestudent,jdbcType=BIT},
+      </if>
+      <if test="iswuhanstudent != null" >
+        iswuhanstudent = #{iswuhanstudent,jdbcType=BIT},
+      </if>
+      <if test="ishubeistudent != null" >
+        ishubeistudent = #{ishubeistudent,jdbcType=BIT},
+      </if>
+      <if test="is14contact != null" >
+        is14contact = #{is14contact,jdbcType=BIT},
+      </if>
+      <if test="isinwuhan != null" >
+        isinwuhan = #{isinwuhan,jdbcType=BIT},
+      </if>
+      <if test="isinhubei != null" >
+        isinhubei = #{isinhubei,jdbcType=BIT},
+      </if>
+      <if test="istodayformother != null" >
+        istodayformother = #{istodayformother,jdbcType=BIT},
+      </if>
+      <if test="islikevirus != null" >
+        islikevirus = #{islikevirus,jdbcType=BIT},
+      </if>
+      <if test="isconfirmvirus != null" >
+        isconfirmvirus = #{isconfirmvirus,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.beans.Virus" >
+    update virus
+    set college = #{college,jdbcType=VARCHAR},
+      myclass = #{myclass,jdbcType=VARCHAR},
+      startdate = #{startdate,jdbcType=TIMESTAMP},
+      username = #{username,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=BIGINT},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      areas = #{areas,jdbcType=VARCHAR},
+      ischinesestudent = #{ischinesestudent,jdbcType=BIT},
+      iswuhanstudent = #{iswuhanstudent,jdbcType=BIT},
+      ishubeistudent = #{ishubeistudent,jdbcType=BIT},
+      is14contact = #{is14contact,jdbcType=BIT},
+      isinwuhan = #{isinwuhan,jdbcType=BIT},
+      isinhubei = #{isinhubei,jdbcType=BIT},
+      istodayformother = #{istodayformother,jdbcType=BIT},
+      islikevirus = #{islikevirus,jdbcType=BIT},
+      isconfirmvirus = #{isconfirmvirus,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

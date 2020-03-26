@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/virus?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: wzt001070
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mail:
+    properties:
+      mail:
+        fmtp:
+          ssl:
+            enable: true
+    host: smtp.qq.com
+    password: dwpyrrjrzylpbacf
+    username: 2104173571@qq.com
+
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
