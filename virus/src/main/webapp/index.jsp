@@ -43,24 +43,6 @@
 				
 				
 				<c:import url="/left.jsp"></c:import>
-				<%-- 
-				<ul class="layui-nav topLevelMenus" pc>
-					<li class="layui-nav-item layui-this" data-menu="A">
-						<a href="javascript:;"><i class="layui-icon"
-							data-icon="&#xe63c;">&#xe63c;</i><cite>图书管理</cite></a>
-					</li>
-					<li class="layui-nav-item" data-menu="B" pc><a
-						href="javascript:;"><i class="seraph icon-icon10"
-							data-icon="icon-icon10"></i><cite>用户中心</cite></a></li>
-					<li class="layui-nav-item" data-menu="C" pc><a
-						href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a>
-					</li>
-					<li class="layui-nav-item" data-menu="D" pc><a
-						href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>使用文档</cite></a>
-					</li>
-				</ul> --%>
-				
-				
 				
 				<!-- 顶部右侧菜单 -->
 				<ul class="layui-nav top_menu">
@@ -74,19 +56,6 @@
 							class="layui-nav-img userAvatar" width="35" height="35"><cite
 							class="adminName">${user.username}${admin.username}</cite></a>
 						<dl class="layui-nav-child">
-							<%-- <dd>
-								<a href="javascript:;" data-url="page/user/userInfo.html"><i
-									class="seraph icon-ziliao" data-icon="icon-ziliao"></i><cite>个人资料</cite></a>
-							</dd>
-							<dd>
-								<a href="javascript:;" data-url="page/user/changePwd.html"><i
-									class="seraph icon-xiugai" data-icon="icon-xiugai"></i><cite>修改密码</cite></a>
-							</dd> 
-							<dd>
-								<a href="javascript:;" class="showNotice"><i
-									class="layui-icon">&#xe645;</i><cite>系统公告</cite><span
-									class="layui-badge-dot"></span></a>
-							</dd> --%>
 							<dd pc>
 								<a href="javascript:;" class="functionSetting"><i
 									class="layui-icon">&#xe620;</i><cite>功能设定</cite><span
@@ -197,8 +166,10 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
     	var type="${user.type}";
     	if (type=='1' || type=='11') {
     		tab = layui.bodyTab({
-    			openTabNum : "50",  //最大可打开窗口数量
-    			url : "json/user2.json" //获取菜单json地址
+			//最大可打开窗口数量
+    			openTabNum : "50",  
+			//获取菜单json地址
+    			url : "json/user2.json" 
     		});
 		}else {
 			tab = layui.bodyTab({
